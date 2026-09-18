@@ -2,53 +2,53 @@
  * A small encapsulated timer that can be controlled only through its public API.
  */
 public class MagicHourglass {
-    private static final int STANDARD_AMOUNT = 60;
-    private static final int MIN_LIMIT = 10;
-    private static final int MAX_LIMIT = 60;
+    private static final int USUAL_AMOUNT = 60;
+    private static final int LOWER_LIMIT = 10;
+    private static final int UPPER_LIMIT = 60;
 
-    private int timeLeft = STANDARD_AMOUNT;
-    private boolean active = true;
+    private int remaining = USUAL_AMOUNT;
+    private boolean enabled = true;
 
     public int getSeconds() {
-        return timeLeft;
+        return remaining;
     }
 
     public boolean isRunning() {
-        return active;
+        return enabled;
     }
 
     public void tick() {
-        if (!active) {
+        if (!enabled) {
             System.out.println("⏳ Часы не идут! Переверните их.");
             return;
         }
 
-        if (timeLeft > 0) {
-            timeLeft--;
-            System.out.println("⏳ Время идёт... Осталось " + timeLeft + " секунд.");
+        if (remaining > 0) {
+            remaining--;
+            System.out.println("⏳ Время идёт... Осталось " + remaining + " секунд.");
         }
 
-        if (timeLeft == 1) {
-            active = false;
+        if (remaining == 1) {
+            enabled = false;
             System.out.println("❌ Время истекло! Переверните часы, чтобы запустить снова.");
         }
     }
 
     public void flip(int durationValue) {
-        timeLeft = durationLooksFine(durationValue) ? STANDARD_AMOUNT : durationValue;
-        active = true;
+        remaining = durationLooksFine(durationValue) ? USUAL_AMOUNT : durationValue;
+        enabled = true;
         System.out.println("🔄 Вы перевернули песочные часы! Времени теперь: "
-                + timeLeft + " секунд.");
+                + remaining + " секунд.");
     }
 
     public void stop() {
-        active = false;
+        enabled = false;
         System.out.println("⏳ Часы остановлены.");
     }
 
     public void start() {
-        if (timeLeft > 0) {
-            active = true;
+        if (remaining > 0) {
+            enabled = true;
             System.out.println("▶ Часы снова идут!");
         } else {
             System.out.println("❌ Нельзя запустить часы без переворота! Переверните их.");
@@ -56,6 +56,6 @@ public class MagicHourglass {
     }
 
     private boolean durationLooksFine(int seconds) {
-        return seconds > MIN_LIMIT && seconds <= MAX_LIMIT;
+        return seconds > LOWER_LIMIT && seconds <= UPPER_LIMIT;
     }
 }

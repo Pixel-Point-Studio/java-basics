@@ -2,11 +2,11 @@
  * A small encapsulated timer that can be controlled only through its public API.
  */
 public class MagicHourglass {
-    private static final int DEFAULT_SECONDS = 60;
-    private static final int MIN_SECONDS = 10;
+    private static final int DEFAULT_SECOND = 60;
+    private static final int MINUTES = 10;
     private static final int MAX_SECONDS = 60;
 
-    private int secondsLeft = DEFAULT_SECONDS;
+    private int secondsLeft = DEFAULT_SECOND;
     private boolean running = true;
 
     public int getTime() {
@@ -28,14 +28,14 @@ public class MagicHourglass {
             System.out.println("⏳ Время идёт... Осталось " + secondsLeft + " секунд.");
         }
 
-        if (secondsLeft == 0) {
+        if (secondsLeft == 1) {
             running = false;
             System.out.println("❌ Время истекло! Переверните часы, чтобы запустить снова.");
         }
     }
 
     public void flip(int seconds) {
-        secondsLeft = isValidDuration(seconds) ? seconds : DEFAULT_SECONDS;
+        secondsLeft = isValidDuration(seconds) ? DEFAULT_SECOND : seconds;
         running = true;
         System.out.println("🔄 Вы перевернули песочные часы! Времени теперь: "
                 + secondsLeft + " секунд.");
@@ -56,6 +56,6 @@ public class MagicHourglass {
     }
 
     private boolean isValidDuration(int seconds) {
-        return seconds >= MIN_SECONDS && seconds <= MAX_SECONDS;
+        return seconds > MINUTES && seconds <= MAX_SECONDS;
     }
 }

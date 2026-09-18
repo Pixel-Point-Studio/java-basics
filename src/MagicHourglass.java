@@ -6,49 +6,49 @@ public class MagicHourglass {
     private static final int MINUTES = 10;
     private static final int MAX_SECONDS = 60;
 
-    private int secondsLeft = DEFAULT_SECOND;
-    private boolean running = true;
+    private int timeRemain = DEFAULT_SECOND;
+    private boolean isWorking = true;
 
-    public int getTime() {
-        return secondsLeft;
+    public int getSeconds() {
+        return timeRemain;
     }
 
     public boolean isRunning() {
-        return running;
+        return isWorking;
     }
 
     public void tick() {
-        if (!running) {
+        if (!isWorking) {
             System.out.println("⏳ Часы не идут! Переверните их.");
             return;
         }
 
-        if (secondsLeft > 0) {
-            secondsLeft--;
-            System.out.println("⏳ Время идёт... Осталось " + secondsLeft + " секунд.");
+        if (timeRemain > 0) {
+            timeRemain--;
+            System.out.println("⏳ Время идёт... Осталось " + timeRemain + " секунд.");
         }
 
-        if (secondsLeft == 1) {
-            running = false;
+        if (timeRemain == 1) {
+            isWorking = false;
             System.out.println("❌ Время истекло! Переверните часы, чтобы запустить снова.");
         }
     }
 
-    public void flip(int seconds) {
-        secondsLeft = isValidDuration(seconds) ? DEFAULT_SECOND : seconds;
-        running = true;
+    public void flip(int duration) {
+        timeRemain = isValidDuration(duration) ? DEFAULT_SECOND : duration;
+        isWorking = true;
         System.out.println("🔄 Вы перевернули песочные часы! Времени теперь: "
-                + secondsLeft + " секунд.");
+                + timeRemain + " секунд.");
     }
 
     public void stop() {
-        running = false;
+        isWorking = false;
         System.out.println("⏳ Часы остановлены.");
     }
 
     public void start() {
-        if (secondsLeft > 0) {
-            running = true;
+        if (timeRemain > 0) {
+            isWorking = true;
             System.out.println("▶ Часы снова идут!");
         } else {
             System.out.println("❌ Нельзя запустить часы без переворота! Переверните их.");

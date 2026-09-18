@@ -1,24 +1,24 @@
 public class Main {
     public static void main(String[] args) {
-        MagicHourglass hourglass = new MagicHourglass();
+        MagicHourglass glassTimer = new MagicHourglass();
 
-        System.out.println("Осталось: " + hourglass.getTime() + " секунд");
+        System.out.println("Осталось: " + glassTimer.getSeconds() + " секунд");
 
-        hourglass.tick();
-        hourglass.tick();
-        System.out.println("Осталось: " + hourglass.getTime() + " секунд");
+        glassTimer.tick();
+        glassTimer.tick();
+        System.out.println("Осталось: " + glassTimer.getSeconds() + " секунд");
 
-        hourglass.flip(45);
-        System.out.println("Осталось: " + hourglass.getTime() + " секунд");
+        glassTimer.flip(45);
+        System.out.println("Осталось: " + glassTimer.getSeconds() + " секунд");
 
-        hourglass.stop();
-        hourglass.tick();
+        glassTimer.stop();
+        glassTimer.tick();
 
-        hourglass.start();
+        glassTimer.start();
 
-        hourglass.flip(5);
-        System.out.println("Осталось: " + hourglass.getTime() + " секунд");
+        glassTimer.flip(5);
+        System.out.println("Осталось: " + glassTimer.getSeconds() + " секунд");
 
-        hourglass.start();
+        glassTimer.start();
     }
 }
